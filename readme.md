@@ -2,7 +2,7 @@
 
 Deliver real-time kafka messages to SignalR Clients
 
-[![Nuget](https://img.shields.io/nuget/v/IntelliTect.AspNetCore.SignalR.SqlServer)](https://www.nuget.org/packages/Kafka.SignalR/)
+[![Nuget](https://img.shields.io/nuget/v/Kafka.SignalR)](https://www.nuget.org/packages/Kafka.SignalR/)
 
 ## Installation
 Install using nuget

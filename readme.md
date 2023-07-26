@@ -8,22 +8,35 @@ Deliver real-time kafka messages to SignalR Clients
 ## Usage
 
 1. Install the `Kafka.SignalR` NuGet package.
-2. In `ConfigureServices` in `Startup.cs`, configure with `.AddKafkaSignalR(Configuration.GetSection("Kafka"))`:
+  * .NET CLI
+  ```cs
+    dotnet add package Kafka.SignalR --version 1.0.0
+  ```
+  * PackageManager
+  ```cs
+  Install-Package Kafka.SignalR -Version 1.0.0
+  ```
 
-.NET CLI
-```cs
-dotnet add package Kafka.SignalR --version 1.0.0
-```
-PackageManager
-```cs
-Install-Package Kafka.SignalR -Version 1.0.0
-```
+2. In `ConfigureServices` in `Startup.cs`, configure with `.AddKafkaSignalR(Configuration.GetSection("Kafka"))`:
+3. In `Configure` in `Startup.cs`, configure with `endpoints.MapHub<KafkaSignalRHub>(Configuration["Kafka:Hub"])`
 
 ## Configuration
 
 Simple configuration:
 ``` cs
 services.AddKafkaSignalR(Configuration.GetSection("Kafka"))
+```
+
+``` cs
+ app.UseEndpoints(endpoints =>
+            {
+                endpoints
+                .MapHub<KafkaSignalRHub>(Configuration["Kafka:Hub"])
+                endpoints
+                .MapGet("/", async context => { 
+                    await context.Response.WriteAsync("Running Kafka Service...."); 
+                });
+            });
 ```
 
 Simple appsettings.json

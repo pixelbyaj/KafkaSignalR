@@ -1,3 +1,8 @@
 /bin
 /obj
 /Properties
+/.vs
+/demo/UI.Service/.vs
+/demo/UI.Service/bin
+/demo/UI.Service/obj
+/demo/UI.Service/Properties

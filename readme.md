@@ -55,3 +55,14 @@ Simple appsettings.json
     "SslKeyLocation": ""
   },
 ```
+
+## SignalR Client
+
+```javascript
+const connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44363/kafka/hubService").build();
+
+connection.on("RelayMessage", function (topicName,message) {
+    // your code 
+  
+  });
+```

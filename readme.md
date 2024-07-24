@@ -4,6 +4,10 @@ Deliver real-time kafka messages to SignalR Clients
 
 [![Nuget](https://img.shields.io/nuget/v/Kafka.SignalR)](https://www.nuget.org/packages/Kafka.SignalR/)
 
+## Feature
+1. Connect Kafka as a Consumer
+2. Deliver the Kafka message direct to UI client using SignalR
+3. Able to connect multiple Kafka Topics.
 
 ## Usage
 
@@ -58,11 +62,20 @@ Simple appsettings.json
 
 ## SignalR Client
 
-```javascript
+```js
 const connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:44363/kafka/hubService").build();
 
 connection.on("RelayMessage", function (topicName,message) {
     // your code 
   
   });
+
+  connection.start().then(function () {
+   
+   //subscribe to kafka topics
+    connection.invoke("Subscribe", "MyTopic");
+    connection.invoke("Subscribe", "MyTopic1");
+}).catch(function (err) {
+    return console.error(err.toString());
+});
 ```

@@ -1,13 +1,18 @@
 # Kafka.SignalR
 
-Deliver real-time kafka messages to SignalR Clients
+Real-time Kafka Message Delivery to Frontend Using SignalR
 
 [![Nuget](https://img.shields.io/nuget/v/Kafka.SignalR)](https://www.nuget.org/packages/Kafka.SignalR/)
+[![Nuget](https://img.shields.io/nuget/dt/Kafka.SignalR)](https://www.nuget.org/packages/Kafka.SignalR/)
+
+## Overview
+
+In this guide, we will demonstrate how to set up a Kafka.SingalR in your application and deliver Kafka messages directly to your frontend client using SignalR. This approach enables real-time updates and seamless communication between your backend and frontend.
 
 ## Feature
-1. Connect Kafka as a Consumer
-2. Deliver the Kafka message direct to UI client using SignalR
-3. Able to connect multiple Kafka Topics.
+* Connect Kafka as a Consumer: Establish a connection to Kafka and consume messages from one or more topics.
+* Deliver Kafka Messages Directly to UI Client: Use SignalR to push Kafka messages to the frontend in real-time.
+* Support for Multiple Kafka Topics: Easily connect and consume messages from multiple Kafka topics.
 
 ## Usage
 

@@ -3,6 +3,7 @@ using Kafka.SignalR.Services;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Kafka.SignalR.Extensions
 {
@@ -24,6 +25,7 @@ namespace Kafka.SignalR.Extensions
         {
             ArgumentNullException.ThrowIfNull(services);
             services.AddSingleton<IKafkaSignalRService, KafkaSignalRService>();
+            services.TryAddSingleton<IKafkaMessageProcessService, KafkaMessageDefaultProcessService>();
             services.AddSingleton<IKafkaConfigurationService>((sp) =>
             {
                 return new KafkaSignalRServerBuilder().SetConfiguration(configuration);

@@ -15,12 +15,13 @@ namespace Kafka.SignalR.Services
     {
         private IHubContext<KafkaSignalRHub> _hubContext;
         private IKafkaConfigurationService _kafkaConfigurationService;
-        public KafkaSignalRService(IHubContext<KafkaSignalRHub> hubContext, IKafkaConfigurationService kafkaConfigurationService)
+        private IKafkaMessageProcessService? _kafkaMessageProcessService;
+        public KafkaSignalRService(IHubContext<KafkaSignalRHub> hubContext, IKafkaConfigurationService kafkaConfigurationService, IKafkaMessageProcessService? kafkaMessageProcessService = null)
         {
             _hubContext = hubContext;
             _kafkaConfigurationService = kafkaConfigurationService;
+            _kafkaMessageProcessService = kafkaMessageProcessService;
         }
-
 
         public async void StartConsumerAsync(CancellationToken stoppingToken)
         {
@@ -38,7 +39,12 @@ namespace Kafka.SignalR.Services
                         {
                             continue;
                         }
-                        await _hubContext.Clients.Group(consumeResult.Topic).SendAsync("RelayMessage", consumeResult.Topic, consumeResult.Message.Value);
+                        string processMessage = consumeResult.Message.Value;
+                        if (_kafkaMessageProcessService != null)
+                        {
+                            processMessage = _kafkaMessageProcessService.ProcessMessage(processMessage);
+                        }
+                        await _hubContext.Clients.Group(consumeResult.Topic).SendAsync("RelayMessage", consumeResult.Topic, processMessage);
 
                     }
                     catch (ConsumeException e)
@@ -53,6 +59,5 @@ namespace Kafka.SignalR.Services
                 }
             }
         }
-
     }
 }

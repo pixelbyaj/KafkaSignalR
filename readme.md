@@ -84,3 +84,25 @@ connection.on("RelayMessage", function (topicName,message) {
     return console.error(err.toString());
 });
 ```
+## Override Message Processing (NEW)
+If user want to override message processing before delivering it to the SignalR Client. Please follow the below approach.
+
+```C#
+public class KafkaMessageProcessService: IKafkaMessageProcessService
+{
+     public string ProcessMessage(string message)
+     {
+        string processedMessage = message;
+        //Do your process
+         return processedMessage;
+     }
+}
+
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    services.AddSingleton<IKafkaMessageProcessService, KafkaMessageProcessService>();
+    ...
+
+}
+```

@@ -14,7 +14,8 @@
     <RepositoryUrl>https://github.com/pixelbyaj/KafkaSignalR.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>kafka, signalr</PackageTags>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

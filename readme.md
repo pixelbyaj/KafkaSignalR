@@ -106,3 +106,8 @@ public void ConfigureServices(IServiceCollection services)
 
 }
 ```
+
+## Local Build and DEMO
+Move the **demo** folder outside of **KafkaSignalR** folder.
+
+Open demo\UI.ServiceKafkaConsumerService.csproj project
